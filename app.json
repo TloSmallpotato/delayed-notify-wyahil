@@ -1,4 +1,3 @@
-
 {
   "expo": {
     "name": "Delayed Notify",
@@ -19,7 +18,9 @@
       "buildNumber": "1",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
-        "UIBackgroundModes": ["remote-notification"]
+        "UIBackgroundModes": [
+          "remote-notification"
+        ]
       },
       "entitlements": {
         "aps-environment": "production"
@@ -63,7 +64,8 @@
       "router": {},
       "eas": {
         "projectId": "your-project-id-here"
-      }
+      },
+      "backendUrl": "https://d8xhwcefmd5zxz5amcuqhzgwsuywxahu.app.specular.dev"
     }
   }
 }
