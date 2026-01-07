@@ -1,3 +1,4 @@
+
 {
   "expo": {
     "name": "Natively",
@@ -14,17 +15,12 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.delayednotify.app",
-      "config": {
-        "usesNonExemptEncryption": false
+      "bundleIdentifier": "com.anonymous.Natively",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
       },
       "entitlements": {
         "aps-environment": "production"
-      },
-      "infoPlist": {
-        "UIBackgroundModes": [
-          "remote-notification"
-        ]
       }
     },
     "android": {
@@ -33,7 +29,7 @@
         "backgroundColor": "#000000"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.delayednotify.app"
+      "package": "com.anonymous.Natively"
     },
     "web": {
       "favicon": "./assets/images/final_quest_240x240.png",
@@ -46,7 +42,7 @@
       [
         "expo-notifications",
         {
-          "sounds": true
+          "sounds": []
         }
       ]
     ],
@@ -55,8 +51,7 @@
       "typedRoutes": true
     },
     "extra": {
-      "router": {},
-      "backendUrl": "https://6zh8drjzfce83pb8b2gp8b9xy2pgwg77.app.specular.dev"
+      "router": {}
     }
   }
 }
