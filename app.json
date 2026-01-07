@@ -1,4 +1,3 @@
-
 {
   "expo": {
     "name": "Natively",
@@ -48,7 +47,8 @@
       "typedRoutes": true
     },
     "extra": {
-      "router": {}
+      "router": {},
+      "backendUrl": "https://6zh8drjzfce83pb8b2gp8b9xy2pgwg77.app.specular.dev"
     }
   }
 }
