@@ -17,6 +17,11 @@ export default function TabLayout() {
         <Label>Home</Label>
         <Icon sf="house.fill" />
       </NativeTabs.Trigger>
+      
+      <NativeTabs.Trigger name="profile">
+        <Label>Profile</Label>
+        <Icon sf="person.circle.fill" />
+      </NativeTabs.Trigger>
     </NativeTabs>
   );
 }
