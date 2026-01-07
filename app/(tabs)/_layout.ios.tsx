@@ -1,34 +1,22 @@
 
 import React from 'react';
-import { Tabs } from 'expo-router/unstable-native-tabs';
-import { IconSymbol } from '@/components/IconSymbol';
+import { NativeTabs, Icon, Label } from 'expo-router/unstable-native-tabs';
 import { colors } from '@/styles/commonStyles';
 
 export default function TabLayout() {
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: colors.primary,
-        tabBarInactiveTintColor: colors.textSecondary,
-        tabBarStyle: {
-          backgroundColor: colors.card,
-        },
+    <NativeTabs
+      tintColor={colors.primary}
+      iconColor={colors.textSecondary}
+      labelStyle={{
+        color: colors.textSecondary,
       }}
+      backgroundColor={colors.card}
     >
-      <Tabs.Screen
-        name="(home)"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => (
-            <IconSymbol 
-              ios_icon_name="house.fill" 
-              android_material_icon_name="home" 
-              size={28} 
-              color={color} 
-            />
-          ),
-        }}
-      />
-    </Tabs>
+      <NativeTabs.Trigger name="(home)">
+        <Label>Home</Label>
+        <Icon sf="house.fill" />
+      </NativeTabs.Trigger>
+    </NativeTabs>
   );
 }
