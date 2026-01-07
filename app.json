@@ -1,7 +1,8 @@
+
 {
   "expo": {
-    "name": "Delayed Notify",
-    "slug": "delayed-notify",
+    "name": "Natively",
+    "slug": "Natively",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/natively-dark.png",
@@ -10,34 +11,22 @@
     "splash": {
       "image": "./assets/images/natively-dark.png",
       "resizeMode": "contain",
-      "backgroundColor": "#F8F9FA"
+      "backgroundColor": "#000000"
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.delayednotify.app",
-      "buildNumber": "1",
+      "bundleIdentifier": "com.anonymous.Natively",
       "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false,
-        "UIBackgroundModes": [
-          "remote-notification"
-        ]
-      },
-      "entitlements": {
-        "aps-environment": "production"
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/natively-dark.png",
-        "backgroundColor": "#F8F9FA"
+        "backgroundColor": "#000000"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.delayednotify.app",
-      "permissions": [
-        "android.permission.POST_NOTIFICATIONS",
-        "android.permission.RECEIVE_BOOT_COMPLETED",
-        "android.permission.VIBRATE"
-      ]
+      "package": "com.anonymous.Natively"
     },
     "web": {
       "favicon": "./assets/images/final_quest_240x240.png",
@@ -46,26 +35,20 @@
     "plugins": [
       "expo-font",
       "expo-router",
+      "expo-web-browser",
       [
         "expo-notifications",
         {
-          "icon": "./assets/images/natively-dark.png",
-          "color": "#007AFF",
-          "sounds": [],
-          "mode": "production"
+          "sounds": []
         }
       ]
     ],
-    "scheme": "delayednotify",
+    "scheme": "natively",
     "experiments": {
       "typedRoutes": true
     },
     "extra": {
-      "router": {},
-      "eas": {
-        "projectId": "your-project-id-here"
-      },
-      "backendUrl": "https://d8xhwcefmd5zxz5amcuqhzgwsuywxahu.app.specular.dev"
+      "router": {}
     }
   }
 }
