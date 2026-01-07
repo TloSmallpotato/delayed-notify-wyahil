@@ -1,4 +1,3 @@
-
 {
   "expo": {
     "name": "Natively",
@@ -23,7 +22,9 @@
         "aps-environment": "production"
       },
       "infoPlist": {
-        "UIBackgroundModes": ["remote-notification"]
+        "UIBackgroundModes": [
+          "remote-notification"
+        ]
       }
     },
     "android": {
