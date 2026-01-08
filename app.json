@@ -1,8 +1,7 @@
-
 {
   "expo": {
-    "name": "Natively",
-    "slug": "Natively",
+    "name": "Delayed Notify",
+    "slug": "Delayed Notify",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/natively-dark.png",
@@ -53,5 +52,6 @@
     "extra": {
       "router": {}
     }
-  }
+  },
+  "scheme": "Delayed Notify"
 }
