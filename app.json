@@ -2,7 +2,7 @@
 {
   "expo": {
     "name": "Natively",
-    "slug": "delayed-noti-natively",
+    "slug": "Natively",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/natively-dark.png",
@@ -16,6 +16,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.anonymous.Natively",
+      "appleTeamId": "2YL6NGR23Q",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
@@ -35,27 +36,14 @@
     "plugins": [
       "expo-font",
       "expo-router",
-      "expo-web-browser",
-      "expo-notifications"
+      "expo-web-browser"
     ],
     "scheme": "natively",
     "experiments": {
       "typedRoutes": true
     },
     "extra": {
-      "router": {},
-      "eas": {
-        "projectId": "20591e6e-ecdb-42fd-a36e-430cd531ad23"
-      }
-    },
-    "updates": {
-      "url": "https://u.expo.dev/20591e6e-ecdb-42fd-a36e-430cd531ad23"
-    },
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
-    "cli": {
-      "appVersionSource": "remote"
+      "router": {}
     }
   }
 }

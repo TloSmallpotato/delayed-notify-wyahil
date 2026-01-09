@@ -1,29 +1,26 @@
 
 {
-  "cli": {
-    "version": ">= 16.0.0",
-    "appVersionSource": "remote"
-  },
-  "build": {
-    "development": {
-      "developmentClient": true,
-      "distribution": "internal",
-      "autoIncrement": true
-    },
-    "preview": {
-      "distribution": "internal",
-      "autoIncrement": true
-    },
-    "staging": {
-      "distribution": "internal",
-      "autoIncrement": true,
-      "channel": "staging"
-    },
-    "production": {
-      "autoIncrement": true
+    "build": {
+        "development": {
+            "developmentClient": true,
+            "distribution": "internal",
+            "autoIncrement": true,
+            "ios": {
+                "appleTeamId": "2YL6NGR23Q"
+            }
+        },
+        "preview": {
+            "distribution": "internal",
+            "autoIncrement": true,
+            "ios": {
+                "appleTeamId": "2YL6NGR23Q"
+            }
+        },
+        "production": {
+            "autoIncrement": true,
+            "ios": {
+                "appleTeamId": "2YL6NGR23Q"
+            }
+        }
     }
-  },
-  "submit": {
-    "production": {}
-  }
 }
