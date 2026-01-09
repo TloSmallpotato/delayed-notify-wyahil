@@ -12,6 +12,11 @@
       "autoIncrement": true,
       "channel": "preview"
     },
+    "staging": {
+      "distribution": "internal",
+      "autoIncrement": true,
+      "channel": "staging"
+    },
     "production": {
       "autoIncrement": true,
       "channel": "production"
