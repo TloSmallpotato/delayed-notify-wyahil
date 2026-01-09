@@ -35,23 +35,30 @@
     "plugins": [
       "expo-font",
       "expo-router",
-      "expo-web-browser"
+      "expo-web-browser",
+      [
+        "expo-notifications",
+        {
+          "sounds": []
+        }
+      ],
+      "expo-updates"
     ],
     "scheme": "natively",
     "experiments": {
       "typedRoutes": true
     },
-    "extra": {
-      "router": {},
-      "eas": {
-        "projectId": "YOUR_PROJECT_ID_HERE"
-      }
-    },
     "updates": {
-      "url": "https://u.expo.dev/YOUR_PROJECT_ID_HERE"
+      "url": "https://u.expo.dev/20591e6e-ecdb-42fd-a36e-430cd531ad23"
     },
     "runtimeVersion": {
       "policy": "appVersion"
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "20591e6e-ecdb-42fd-a36e-430cd531ad23"
+      }
     }
   }
 }

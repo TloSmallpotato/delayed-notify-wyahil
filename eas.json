@@ -4,25 +4,17 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "autoIncrement": true,
-      "channel": "development"
+      "autoIncrement": true
     },
     "preview": {
       "distribution": "internal",
-      "autoIncrement": true,
-      "channel": "preview"
-    },
-    "staging": {
-      "distribution": "internal",
-      "autoIncrement": true,
-      "channel": "staging"
+      "autoIncrement": true
     },
     "production": {
-      "autoIncrement": true,
-      "channel": "production"
+      "autoIncrement": true
+    },
+    "staging": {
+      "channel": "staging"
     }
-  },
-  "submit": {
-    "production": {}
   }
 }
