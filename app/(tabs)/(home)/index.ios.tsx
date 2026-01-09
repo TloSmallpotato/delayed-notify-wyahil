@@ -1,10 +1,11 @@
 
 import React, { useState, useEffect } from "react";
-import { Stack } from "expo-router";
+import { Stack, router } from "expo-router";
 import { StyleSheet, View, Text, TouchableOpacity, Alert, Platform } from "react-native";
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import { colors } from '@/styles/commonStyles';
+import { IconSymbol } from '@/components/IconSymbol';
 
 // Set up notification handler BEFORE the component
 Notifications.setNotificationHandler({
@@ -100,6 +101,21 @@ export default function HomeScreen() {
           {'\n\n'}
           The notification will appear even if you close the app or switch to another app.
         </Text>
+
+        <TouchableOpacity 
+          style={styles.infoButton}
+          onPress={() => router.push('/ota-info')}
+        >
+          <IconSymbol
+            ios_icon_name="info.circle.fill"
+            android_material_icon_name="info"
+            size={24}
+            color={colors.primary || '#007AFF'}
+          />
+          <Text style={[styles.infoButtonText, { color: colors.primary || '#007AFF' }]}>
+            How to Push OTA Updates
+          </Text>
+        </TouchableOpacity>
       </View>
     </>
   );
@@ -141,5 +157,18 @@ const styles = StyleSheet.create({
     opacity: 0.6,
     textAlign: 'center',
     lineHeight: 22,
+  },
+  infoButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginTop: 32,
+    padding: 12,
+    borderRadius: 8,
+    backgroundColor: 'rgba(0, 122, 255, 0.1)',
+  },
+  infoButtonText: {
+    fontSize: 16,
+    fontWeight: '500',
   },
 });

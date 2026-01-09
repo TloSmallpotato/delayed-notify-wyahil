@@ -1,12 +1,19 @@
+
 {
   "expo": {
-    "name": "Delayed Notify",
-    "slug": "Delayed Notify",
+    "name": "Natively",
+    "slug": "Natively",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/natively-dark.png",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/[your-project-id]"
+    },
     "splash": {
       "image": "./assets/images/natively-dark.png",
       "resizeMode": "contain",
@@ -17,9 +24,6 @@
       "bundleIdentifier": "com.anonymous.Natively",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
-      },
-      "entitlements": {
-        "aps-environment": "production"
       }
     },
     "android": {
@@ -38,20 +42,17 @@
       "expo-font",
       "expo-router",
       "expo-web-browser",
-      [
-        "expo-notifications",
-        {
-          "sounds": []
-        }
-      ]
+      "expo-updates"
     ],
     "scheme": "natively",
     "experiments": {
       "typedRoutes": true
     },
     "extra": {
-      "router": {}
+      "router": {},
+      "eas": {
+        "projectId": "[your-project-id]"
+      }
     }
-  },
-  "scheme": "Delayed Notify"
+  }
 }
