@@ -5,22 +5,16 @@
             "developmentClient": true,
             "distribution": "internal",
             "autoIncrement": true,
-            "ios": {
-                "appleTeamId": "2YL6NGR23Q"
-            }
+            "ios": {}
         },
         "preview": {
             "distribution": "internal",
             "autoIncrement": true,
-            "ios": {
-                "appleTeamId": "2YL6NGR23Q"
-            }
+            "ios": {}
         },
         "production": {
             "autoIncrement": true,
-            "ios": {
-                "appleTeamId": "2YL6NGR23Q"
-            }
+            "ios": {}
         }
     }
 }
