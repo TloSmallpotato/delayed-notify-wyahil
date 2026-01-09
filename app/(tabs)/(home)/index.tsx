@@ -82,6 +82,32 @@ export default function HomeScreen() {
     }
   }
 
+  async function handleInstantNotification() {
+    try {
+      const hasPermission = await requestPermissions();
+      if (!hasPermission) return;
+
+      console.log('Sending instant notification');
+      
+      // Send instant notification (trigger: null means immediate)
+      await Notifications.scheduleNotificationAsync({
+        content: {
+          title: "Instant Notification ⚡",
+          body: 'This notification appeared immediately!',
+          sound: true,
+          data: { timestamp: Date.now() },
+        },
+        trigger: null, // null trigger means instant
+      });
+      
+      console.log('Instant notification sent successfully');
+
+    } catch (error) {
+      console.error('Error sending instant notification:', error);
+      Alert.alert('Error', 'Failed to send notification. Please try again.');
+    }
+  }
+
   return (
     <View style={styles.container}>
       <TouchableOpacity 
@@ -95,27 +121,23 @@ export default function HomeScreen() {
             : 'Notify Me in 3 Seconds'}
         </Text>
       </TouchableOpacity>
-      
-      <Text style={styles.hint}>
-        Tap the button to schedule a notification in 3 seconds.
-        {'\n\n'}
-        The notification will appear even if you close the app or switch to another app.
-      </Text>
 
       <TouchableOpacity 
-        style={styles.infoButton}
-        onPress={() => router.push('/ota-info')}
+        style={styles.instantButton}
+        onPress={handleInstantNotification}
       >
-        <IconSymbol
-          ios_icon_name="info.circle.fill"
-          android_material_icon_name="info"
-          size={24}
-          color={colors.primary || '#007AFF'}
-        />
-        <Text style={[styles.infoButtonText, { color: colors.primary || '#007AFF' }]}>
-          How to Push OTA Updates
+        <Text style={styles.buttonText}>
+          Send Instant Notification
         </Text>
       </TouchableOpacity>
+      
+      <Text style={styles.hint}>
+        Tap the first button to schedule a notification in 3 seconds.
+        {'\n'}
+        Tap the second button to send an instant notification.
+        {'\n\n'}
+        Notifications will appear even if you close the app or switch to another app.
+      </Text>
     </View>
   );
 }
@@ -144,6 +166,20 @@ const styles = StyleSheet.create({
   scheduledButton: {
     backgroundColor: '#34C759',
   },
+  instantButton: {
+    backgroundColor: '#FF9500',
+    paddingHorizontal: 32,
+    paddingVertical: 16,
+    borderRadius: 12,
+    minWidth: 250,
+    alignItems: 'center',
+    marginTop: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
   buttonText: {
     color: '#FFFFFF',
     fontSize: 18,
@@ -156,18 +192,5 @@ const styles = StyleSheet.create({
     opacity: 0.6,
     textAlign: 'center',
     lineHeight: 22,
-  },
-  infoButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-    marginTop: 32,
-    padding: 12,
-    borderRadius: 8,
-    backgroundColor: 'rgba(0, 122, 255, 0.1)',
-  },
-  infoButtonText: {
-    fontSize: 16,
-    fontWeight: '500',
   },
 });

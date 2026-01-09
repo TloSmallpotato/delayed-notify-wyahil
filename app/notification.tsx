@@ -1,13 +1,13 @@
 
-import * as Notifications from 'expo-notifications';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Pressable, Alert, Platform } from 'react-native';
 import { router } from 'expo-router';
+import * as Notifications from 'expo-notifications';
+import { StyleSheet, Text, View, Pressable, Alert, Platform } from 'react-native';
+import * as Device from 'expo-device';
 import { GlassView } from 'expo-glass-effect';
 import { useTheme } from '@react-navigation/native';
-import * as Device from 'expo-device';
 
-// Set notification handler
+// Configure notification handler
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
@@ -17,86 +17,104 @@ Notifications.setNotificationHandler({
 });
 
 export default function NotificationScreen() {
+  const [permissionGranted, setPermissionGranted] = useState(false);
   const theme = useTheme();
-  const [isScheduled, setIsScheduled] = useState(false);
 
   useEffect(() => {
     requestPermissions();
   }, []);
 
-  async function requestPermissions() {
+  const requestPermissions = async () => {
     if (Platform.OS === 'android') {
       await Notifications.setNotificationChannelAsync('default', {
         name: 'default',
         importance: Notifications.AndroidImportance.MAX,
+        vibrationPattern: [0, 250, 250, 250],
+        lightColor: '#FF231F7C',
       });
     }
 
-    const { status: existingStatus } = await Notifications.getPermissionsAsync();
-    let finalStatus = existingStatus;
-
-    if (existingStatus !== 'granted') {
-      const { status } = await Notifications.requestPermissionsAsync();
-      finalStatus = status;
-    }
-
-    if (finalStatus !== 'granted') {
-      Alert.alert('Permission required', 'Please enable notifications in Settings');
-    }
-  }
-
-  async function scheduleNotification() {
-    try {
-      await Notifications.scheduleNotificationAsync({
-        content: {
-          title: "Time's up! ⏰",
-          body: '3 seconds have passed',
-          sound: true,
-        },
-        trigger: {
-          seconds: 3,
-        },
-      });
-
-      setIsScheduled(true);
+    if (Device.isDevice) {
+      const { status: existingStatus } = await Notifications.getPermissionsAsync();
+      let finalStatus = existingStatus;
       
-      // Reset button after notification should have fired
-      setTimeout(() => {
-        setIsScheduled(false);
-      }, 4000);
-
-    } catch (error) {
-      Alert.alert('Error', 'Failed to schedule notification');
-      console.error(error);
+      if (existingStatus !== 'granted') {
+        const { status } = await Notifications.requestPermissionsAsync();
+        finalStatus = status;
+      }
+      
+      if (finalStatus !== 'granted') {
+        Alert.alert('Permission Required', 'Please enable notifications in Settings');
+        setPermissionGranted(false);
+        return;
+      }
+      
+      setPermissionGranted(true);
     }
-  }
+  };
+
+  const scheduleDelayedNotification = async () => {
+    if (!permissionGranted) {
+      Alert.alert('Permission Required', 'Please enable notifications first');
+      return;
+    }
+
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        title: "Delayed Notification 🔔",
+        body: 'This notification was scheduled 3 seconds ago!',
+        sound: true,
+      },
+      trigger: {
+        seconds: 3,
+      },
+    });
+
+    Alert.alert('Scheduled!', 'Notification will appear in 3 seconds');
+  };
+
+  const sendInstantNotification = async () => {
+    if (!permissionGranted) {
+      Alert.alert('Permission Required', 'Please enable notifications first');
+      return;
+    }
+
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        title: "Instant Notification ⚡",
+        body: 'This notification appeared immediately!',
+        sound: true,
+      },
+      trigger: null, // null trigger means instant
+    });
+  };
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <Text style={[styles.title, { color: theme.colors.text }]}>Local Notification</Text>
-      <Text style={[styles.description, { color: theme.colors.text }]}>
-        Tap the button to schedule a notification in 3 seconds.
-        {'\n\n'}
-        The notification will appear even if you close the app or switch to another app.
+      <Text style={[styles.title, { color: theme.colors.text }]}>Local Notifications</Text>
+      <Text style={[styles.text, { color: theme.colors.text }]}>
+        Test local notifications on your device
       </Text>
 
-      <Pressable 
-        onPress={scheduleNotification} 
-        disabled={isScheduled}
-        style={({ pressed }) => [
-          styles.notificationButton,
-          isScheduled && styles.scheduledButton,
-          pressed && styles.pressedButton,
-        ]}
-      >
-        <Text style={styles.buttonText}>
-          {isScheduled ? '✓ Scheduled (3s)' : 'Schedule Notification'}
-        </Text>
+      <Pressable onPress={scheduleDelayedNotification}>
+        <GlassView style={styles.button} glassEffectStyle="clear">
+          <Text style={[styles.buttonText, { color: theme.colors.primary }]}>
+            Schedule 3s Notification
+          </Text>
+        </GlassView>
       </Pressable>
 
-      <Pressable onPress={() => router.back()} style={styles.closeButton}>
-        <GlassView style={styles.glassButton} glassEffectStyle="clear">
-          <Text style={[styles.closeText, { color: theme.colors.primary }]}>Close</Text>
+      <Pressable onPress={sendInstantNotification}>
+        <GlassView style={[styles.button, styles.instantButton]} glassEffectStyle="clear">
+          <Text style={[styles.buttonText, { color: theme.colors.primary }]}>
+            Send Instant Notification
+          </Text>
+        </GlassView>
+      </Pressable>
+
+      <Pressable onPress={() => router.back()}>
+        <GlassView style={styles.button} glassEffectStyle="clear">
+          <Text style={[styles.buttonText, { color: theme.colors.primary }]}>Close</Text>
         </GlassView>
       </Pressable>
     </View>
@@ -111,44 +129,25 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   title: {
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 16,
   },
-  description: {
+  text: {
     fontSize: 16,
-    marginBottom: 40,
-    textAlign: 'center',
-    lineHeight: 24,
-    opacity: 0.8,
-  },
-  notificationButton: {
-    backgroundColor: '#007AFF',
-    paddingHorizontal: 40,
-    paddingVertical: 20,
-    borderRadius: 16,
     marginBottom: 24,
+    textAlign: 'center',
   },
-  scheduledButton: {
-    backgroundColor: '#34C759',
-  },
-  pressedButton: {
-    opacity: 0.7,
-  },
-  buttonText: {
-    color: '#FFFFFF',
-    fontSize: 18,
-    fontWeight: '600',
-  },
-  closeButton: {
-    marginTop: 20,
-  },
-  glassButton: {
+  button: {
     paddingHorizontal: 20,
     paddingVertical: 12,
     borderRadius: 8,
+    marginBottom: 12,
   },
-  closeText: {
+  instantButton: {
+    marginTop: 8,
+  },
+  buttonText: {
     fontSize: 16,
     fontWeight: '600',
   },

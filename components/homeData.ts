@@ -1,9 +1,15 @@
 
 export const modalDemos = [
   {
-    title: "Local Notification",
-    description: "3-second delayed notification (works in background)",
+    title: "Local Notifications",
+    description: "Test instant and delayed notifications",
     route: "/notification",
+    color: "#FF2D55",
+  },
+  {
+    title: "Standard Modal",
+    description: "Full screen modal presentation",
+    route: "/modal",
     color: "#007AFF",
   },
   {
