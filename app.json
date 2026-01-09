@@ -15,8 +15,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.Natively",
-      "appleTeamId": "2YL6NGR23Q",
+      "bundleIdentifier": "com.kopito.natively",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
@@ -27,7 +26,7 @@
         "backgroundColor": "#000000"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.anonymous.Natively"
+      "package": "com.kopito.natively"
     },
     "web": {
       "favicon": "./assets/images/final_quest_240x240.png",
